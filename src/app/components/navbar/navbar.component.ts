@@ -22,6 +22,7 @@ export class NavbarComponent implements OnInit {
     this.authService.logout();
     this.currentUser=this.authService.getCurrentUser();
     this.isLogged=false;
+    console.log('Logged out successfully.')
   }
 
 }
