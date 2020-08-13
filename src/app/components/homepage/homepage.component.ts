@@ -12,9 +12,9 @@ export class HomepageComponent implements OnInit {
   constructor(private userService: UserService) { }
 
   ngOnInit() {
-    this.userService.getUser("admin@admin.com").subscribe((res)=>{
+    /*this.userService.getUser("admin@admin.com").subscribe((res)=>{
       console.log(res);
-    })
+    })*/
   }
 
 }

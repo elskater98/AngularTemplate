@@ -4,12 +4,12 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { NavbarComponent } from './components/navbar/navbar.component';
+
 import {
   MatButtonModule,
   MatFormFieldModule,
   MatIconModule,
-  MatInputModule,
+  MatInputModule, MatMenuModule,
   MatSidenavModule,
   MatSnackBar, MatSnackBarModule,
   MatToolbarModule
@@ -18,13 +18,17 @@ import {HttpClientModule} from '@angular/common/http';
 import { HomepageComponent } from './components/homepage/homepage.component';
 import { LoginComponent } from './components/login/login.component';
 import {ReactiveFormsModule} from '@angular/forms';
+import {FlexLayoutModule} from '@angular/flex-layout';
+import { NavBarComponent } from './components/nav-bar/nav-bar.component';
+import { LayoutModule } from '@angular/cdk/layout';
+import { MatListModule } from '@angular/material/list';
 
 @NgModule({
   declarations: [
     AppComponent,
-    NavbarComponent,
     HomepageComponent,
-    LoginComponent
+    LoginComponent,
+    NavBarComponent
   ],
   imports: [
     BrowserModule,
@@ -38,7 +42,11 @@ import {ReactiveFormsModule} from '@angular/forms';
     MatFormFieldModule,
     ReactiveFormsModule,
     MatInputModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    FlexLayoutModule,
+    MatMenuModule,
+    LayoutModule,
+    MatListModule
 
   ],
   providers: [],
