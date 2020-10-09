@@ -9,9 +9,10 @@ import {UserService} from '../../services/user.service';
 })
 export class HomepageComponent implements OnInit {
 
-  constructor(private userService: UserService) { }
+  constructor(private userService: UserService,private authService:AuthenticationService) { }
 
   ngOnInit() {
+    console.log(this.authService.getCurrentUser());
     /*this.userService.getUser("admin@admin.com").subscribe((res)=>{
       console.log(res);
     })*/

@@ -4,6 +4,7 @@ import {Observable} from 'rxjs';
 import {User} from '../models/User';
 import {environment} from '../../environments/environment';
 import {map} from 'rxjs/operators';
+import {Router} from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +13,7 @@ export class AuthenticationService {
 
   private url = environment.urlConf;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient,private router:Router) { }
 
   login(email:string, password:string): Observable<any> {
   return this.http.get(this.url+'/auth',{params:{
@@ -22,6 +23,19 @@ export class AuthenticationService {
       map(data => {
         return new User(data);
       }))
+  }
+
+  getProfile(credentials):Observable<any>{
+    return this.http.get(this.url+'/auth/profile',{params:{token:credentials}});
+  }
+
+  setProfile(credentials){
+    this.getProfile(credentials).subscribe((user)=>{
+      this.storeCurrentUser(user);
+    });
+    this.router.navigate(['']).then(()=>{
+      window.location.reload();
+    });
   }
 
   storeCurrentUser(user:User){

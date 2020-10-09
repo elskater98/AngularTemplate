@@ -15,7 +15,6 @@ export class LoginComponent implements OnInit {
   loginForm: FormGroup;
 
   constructor(private fb: FormBuilder,
-              private router: Router,
               private authService: AuthenticationService,
               private matSnackBar: MatSnackBar) { }
 
@@ -27,12 +26,9 @@ export class LoginComponent implements OnInit {
   }
 
   login(){
-    this.authService.login(this.loginForm.value.email, this.loginForm.value.password).subscribe((user)=>{
-      this.authService.storeCurrentUser(user);
+    this.authService.login(this.loginForm.value.email, this.loginForm.value.password).subscribe((credentials)=>{
+      this.authService.setProfile(credentials.token);
       console.log('Successfully logged in.');
-      this.router.navigate(['']).then(()=>{
-        window.location.reload();
-      });
     },(error) => {
       console.log(error);
       this.matSnackBar.open(error.statusText+' ('+error.status+')','Close',{duration:2000})
